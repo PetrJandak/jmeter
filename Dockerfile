@@ -4,6 +4,14 @@ FROM openjdk:8-jre-alpine
 # Set JMeter version
 ARG JMETER_VERSION="5.4.1"
 ARG PLUGINS_PATH="/jmeter/lib/ext"
+ENV JAVA_OPTS="-Xms512m -Xmx2048m"
+
+
+# Copy entrypoint script into the image
+COPY entrypoint.sh /entrypoint.sh
+
+# Make the script executable
+RUN chmod +x /entrypoint.sh
 
 # Install wget and unzip
 RUN apk add --update wget unzip
@@ -31,4 +39,4 @@ WORKDIR /jmeter
 EXPOSE 1099 50000 6000
 
 # Set the default command for the image
-ENTRYPOINT ["jmeter"]
+ENTRYPOINT ["entrypoint.sh"]
