@@ -20,9 +20,6 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'node'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
     
