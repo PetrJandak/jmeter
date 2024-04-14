@@ -19,6 +19,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
+          exit-code: '1'
           image-ref: 'node'
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
